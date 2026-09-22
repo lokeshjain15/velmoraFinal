@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-if(!process.env.MONGO_URI) {
+if (!process.env.MONGO_URI) {
     throw new Error("MONGO_URI is not defined in the environment variables");
 }
 
-if(!process.env.JWT_SECRET) {
+if (!process.env.JWT_SECRET) {
     throw new Error("JWT_SECRET is not defined in the environment variables");
 }
 
@@ -13,10 +13,10 @@ const frontendUrl = (process.env.FRONTEND_URL || "http://localhost:5173").trim()
 
 // Auto-derive production callback URL if running on Render or FRONTEND_URL is configured for production
 const defaultGoogleCallbackUrl = process.env.RENDER_EXTERNAL_URL
-  ? `${process.env.RENDER_EXTERNAL_URL.trim().replace(/\/+$/, "")}/api/auth/google/callback`
-  : (frontendUrl && !frontendUrl.includes("localhost")
-      ? `${frontendUrl}/api/auth/google/callback`
-      : "http://localhost:3000/api/auth/google/callback");
+    ? `${process.env.RENDER_EXTERNAL_URL.trim().replace(/\/+$/, "")}/api/auth/google/callback`
+    : (frontendUrl && !frontendUrl.includes("localhost")
+        ? `${frontendUrl}/api/auth/google/callback`
+        : "https://velmorafinal-3.onrender.com/api/auth/google/callback");
 
 export const config = {
     MONGO_URI: process.env.MONGO_URI,
