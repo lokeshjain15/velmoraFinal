@@ -20,6 +20,9 @@ const __dirname = path.dirname(__filename);
 // Initialize Express app
 const app = express();
 
+// Trust reverse proxy (Render, etc.) for HTTPS detection and secure cookies
+app.set("trust proxy", 1);
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -82,6 +85,7 @@ if (config.GOOGLE_CLIENT_ID && config.GOOGLE_CLIENT_SECRET) {
         clientID: config.GOOGLE_CLIENT_ID,
         clientSecret: config.GOOGLE_CLIENT_SECRET,
         callbackURL: googleCallbackURL,
+        proxy: true,
       },
       (accessToken, refreshToken, profile, done) => {
         return done(null, profile);
