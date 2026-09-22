@@ -9,6 +9,7 @@ import passport from "passport";
 import {Strategy as GoogleStrategy} from "passport-google-oauth20";
 import {config} from "./config/config.js";
 import cors from "cors";
+import path from "path";
 
 // Initialize Express app
 const app = express();
@@ -41,7 +42,7 @@ app.use(
 // Initialize Passport.js
 app.use(passport.initialize());
 
-app.use(express.static(Path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Configure Google OAuth strategy
 if (config.GOOGLE_CLIENT_ID && config.GOOGLE_CLIENT_SECRET) {
