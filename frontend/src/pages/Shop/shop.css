@@ -1,0 +1,787 @@
+/* ==========================================
+   BASE
+========================================== */
+
+.shop-page {
+  min-height: 100vh;
+  background: #fbfaf7;
+  color: #302922;
+}
+
+.shop-container {
+  width: min(1280px, calc(100% - 52px));
+  margin-inline: auto;
+}
+
+
+/* ==========================================
+   INTRO
+========================================== */
+
+.shop-intro {
+  padding: 54px 0 42px;
+}
+
+.shop-intro p {
+  max-width: 560px;
+
+  margin: 0;
+
+  font-size: 12px;
+  line-height: 1.9;
+
+  color: #635a51;
+}
+
+
+/* ==========================================
+   SHOP MAIN
+========================================== */
+
+.shop-section {
+  padding: 20px 0 90px;
+}
+
+.shop-layout {
+  display: grid;
+
+  grid-template-columns: 200px minmax(0, 1fr);
+
+  gap: 48px;
+
+  align-items: start;
+}
+
+
+/* ==========================================
+   FILTER SIDEBAR
+========================================== */
+
+.shop-sidebar {
+  position: sticky;
+  top: 110px;
+}
+
+.shop-filter-title {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #d9d2c8;
+}
+
+.shop-filter-title h2 {
+  margin: 0;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  font-weight: 500;
+
+  color: #352d26;
+}
+
+.shop-filter-section {
+  margin-top: 25px;
+}
+
+.shop-filter-section > p {
+  margin: 0 0 13px;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+
+  color: #665c52;
+}
+
+.shop-filter-options {
+  display: flex;
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+.shop-filter-option {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  font-size: 10px;
+
+  color: #625950;
+}
+
+.shop-filter-option input {
+  width: 12px;
+  height: 12px;
+
+  margin: 0;
+
+  accent-color: #302922;
+}
+
+.shop-clear {
+  margin-top: 30px;
+
+  padding: 0 0 3px;
+
+  border: 0;
+  border-bottom: 1px solid #51463d;
+
+  background: transparent;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+
+  color: #51463d;
+}
+
+
+/* ==========================================
+   TOOLBAR
+========================================== */
+
+.shop-toolbar {
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 44px;
+  padding-bottom: 11px;
+
+  border-bottom: 1px solid #dad4ca;
+}
+
+.shop-category-tabs {
+  display: flex;
+  align-items: center;
+
+  gap: 27px;
+}
+
+.shop-category-tabs button {
+  padding: 0 0 9px;
+
+  border: 0;
+  border-bottom: 1px solid transparent;
+
+  background: transparent;
+
+  font-size: 8px;
+  font-weight: 500;
+
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+
+  color: #6f655c;
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.shop-category-tabs button:hover,
+.shop-category-tabs button.active {
+  color: #302922;
+}
+
+.shop-category-tabs button.active {
+  border-bottom-color: #302922;
+}
+
+.shop-toolbar-right {
+  display: flex;
+  align-items: center;
+
+  gap: 22px;
+
+  margin-left: auto;
+}
+
+.shop-count {
+  white-space: nowrap;
+
+  font-size: 8px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+
+  color: #71665c;
+}
+
+.shop-sort {
+  position: relative;
+}
+
+.shop-sort select {
+  padding: 5px 20px 5px 0;
+
+  border: 0;
+
+  appearance: none;
+
+  background: transparent;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 9px;
+
+  color: #554c44;
+
+  outline: none;
+}
+
+.shop-sort svg {
+  position: absolute;
+
+  top: 50%;
+  right: 0;
+
+  width: 11px;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+}
+
+.shop-mobile-filter-button {
+  display: none;
+}
+
+
+/* ==========================================
+   PRODUCT GRID
+========================================== */
+
+.shop-product-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  column-gap: 24px;
+  row-gap: 42px;
+}
+
+.shop-product-card {
+  min-width: 0;
+}
+
+.shop-product-image-wrap {
+  position: relative;
+
+  overflow: hidden;
+
+  background: #ece7df;
+}
+
+.shop-product-image {
+  display: block;
+
+  width: 100%;
+
+  aspect-ratio: 0.88 / 1;
+
+  overflow: hidden;
+}
+
+.shop-product-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 600ms ease;
+}
+
+.shop-product-card:hover .shop-product-image img {
+  transform: scale(1.025);
+}
+
+
+/* Wishlist */
+
+.shop-wishlist {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #ddd6cc;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  color: #393129;
+
+  transition:
+    transform 180ms ease,
+    color 180ms ease,
+    background 180ms ease;
+}
+
+.shop-wishlist svg {
+  width: 15px;
+}
+
+.shop-wishlist:hover {
+  transform: scale(1.06);
+}
+
+.shop-wishlist.active {
+  border-color: #302922;
+
+  background: #302922;
+  color: white;
+}
+
+
+/* Product text */
+
+.shop-product-info {
+  padding-top: 12px;
+}
+
+.shop-product-category {
+  margin: 0 0 4px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+
+  color: #8b7c6d;
+}
+
+.shop-product-bottom {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.shop-product-name {
+  max-width: 72%;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  font-weight: 500;
+
+  line-height: 1.15;
+
+  color: #302922;
+
+  transition: color 180ms ease;
+}
+
+.shop-product-name:hover {
+  color: #806b58;
+}
+
+.shop-product-price {
+  padding-top: 2px;
+
+  flex-shrink: 0;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #302922;
+}
+
+
+/* ==========================================
+   PAGINATION
+========================================== */
+
+.shop-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 70px;
+}
+
+.shop-pagination button {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #ddd5ca;
+
+  background: transparent;
+
+  font-size: 9px;
+
+  color: #61574e;
+
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.shop-pagination button:hover:not(:disabled),
+.shop-pagination button.active {
+  border-color: #342c25;
+
+  background: #342c25;
+  color: #fff;
+}
+
+.shop-pagination button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.35;
+}
+
+
+/* ==========================================
+   EMPTY
+========================================== */
+
+.shop-empty {
+  padding: 110px 20px;
+
+  text-align: center;
+}
+
+.shop-empty p {
+  margin: 0;
+
+  font-size: 8px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+
+  color: #948475;
+}
+
+.shop-empty h2 {
+  margin: 14px 0 0;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 34px;
+  font-weight: 500;
+
+  color: #342c25;
+}
+
+.shop-empty button {
+  margin-top: 24px;
+
+  padding: 0 0 4px;
+
+  border: 0;
+  border-bottom: 1px solid #44382f;
+
+  background: transparent;
+
+  font-size: 8px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+
+  color: #44382f;
+}
+
+
+/* ==========================================
+   MOBILE DRAWER
+========================================== */
+
+.shop-mobile-overlay,
+.shop-mobile-drawer {
+  display: none;
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1000px) {
+
+  .shop-container {
+    width: min(900px, calc(100% - 40px));
+  }
+
+  .shop-layout {
+    grid-template-columns: 170px minmax(0, 1fr);
+
+    gap: 30px;
+  }
+
+  .shop-category-tabs {
+    gap: 15px;
+  }
+
+  .shop-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ==========================================
+   MOBILE / SMALL TABLET
+========================================== */
+
+@media (max-width: 760px) {
+
+  .shop-container {
+    width: calc(100% - 32px);
+  }
+
+  .shop-intro {
+    padding: 38px 0 30px;
+  }
+
+  .shop-intro p {
+    font-size: 11px;
+  }
+
+  .shop-section {
+    padding: 10px 0 65px;
+  }
+
+  .shop-layout {
+    display: block;
+  }
+
+  .shop-sidebar,
+  .shop-category-tabs {
+    display: none;
+  }
+
+  .shop-toolbar {
+    margin-bottom: 30px;
+  }
+
+  .shop-mobile-filter-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    font-size: 10px;
+
+    color: #554b42;
+  }
+
+  .shop-toolbar-right {
+    gap: 13px;
+  }
+
+  .shop-count {
+    font-size: 7px;
+  }
+
+  .shop-sort select {
+    font-size: 8px;
+  }
+
+  .shop-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    column-gap: 14px;
+    row-gap: 32px;
+  }
+
+  .shop-product-name {
+    max-width: 100%;
+
+    font-size: 17px;
+  }
+
+  .shop-product-bottom {
+    display: block;
+  }
+
+  .shop-product-price {
+    display: block;
+
+    margin-top: 5px;
+
+    padding: 0;
+  }
+
+  .shop-wishlist {
+    top: 8px;
+    right: 8px;
+
+    width: 31px;
+    height: 31px;
+  }
+
+
+  /* Mobile drawer */
+
+  .shop-mobile-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 80;
+
+    display: block;
+
+    border: 0;
+
+    background: rgba(24, 20, 16, 0.35);
+  }
+
+  .shop-mobile-drawer {
+    position: fixed;
+
+    inset: 0 auto 0 0;
+
+    z-index: 90;
+
+    display: block;
+
+    width: min(320px, 88vw);
+
+    overflow-y: auto;
+
+    padding: 25px;
+
+    background: #fbfaf7;
+
+    box-shadow: 10px 0 35px rgba(38, 30, 23, 0.13);
+  }
+
+  .shop-mobile-drawer-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 35px;
+  }
+
+  .shop-mobile-drawer-header h2 {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 27px;
+    font-weight: 500;
+  }
+
+  .shop-mobile-drawer-header button {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    background: transparent;
+  }
+
+  .shop-mobile-actions {
+    display: grid;
+
+    gap: 9px;
+
+    margin-top: 40px;
+  }
+
+  .shop-mobile-actions button {
+    min-height: 43px;
+
+    padding: 10px;
+
+    font-size: 9px;
+    font-weight: 500;
+
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+  }
+
+  .shop-mobile-actions .primary {
+    border: 1px solid #332b24;
+
+    background: #332b24;
+    color: white;
+  }
+
+  .shop-mobile-actions .secondary {
+    border: 1px solid #d8d0c5;
+
+    background: transparent;
+    color: #51473e;
+  }
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+
+  .shop-toolbar {
+    align-items: flex-start;
+  }
+
+  .shop-toolbar-right {
+    align-items: flex-end;
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+  .shop-product-grid {
+    grid-template-columns: 1fr;
+
+    row-gap: 40px;
+  }
+
+  .shop-product-image {
+    aspect-ratio: 0.88 / 1;
+  }
+
+  .shop-product-name {
+    font-size: 20px;
+  }
+
+}

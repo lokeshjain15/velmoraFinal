@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+@import "tailwindcss";
+
+
+/* ==========================================
+   BASE STYLES
+========================================== */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+
+    font-family: "Poppins", sans-serif;
+
+    background: #f8f5f1;
+    color: #222;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Cormorant Garamond", serif;
+  }
+}
+
+
+/* ==========================================
+   VELMORA FOOTER
+========================================== */
+
+footer.vel-footer {
+  width: 100%;
+  margin-top: 80px;
+  background-color: #1d1d1b !important;
+  color: #f8f5f1;
+}
+
+.vel-footer-inner {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 64px 0 52px;
+
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 50px;
+  align-items: start;
+}
+
+/* Brand */
+
+.vel-footer-brand {
+  max-width: 330px;
+}
+
+.vel-footer-logo {
+  display: inline-block;
+  margin-bottom: 20px;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 6px;
+
+  color: #ffffff !important;
+}
+
+.vel-footer-description {
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 400;
+
+  color: #c9c5bf !important;
+}
+
+/* Headings */
+
+.vel-footer-column h3 {
+  margin: 0 0 20px;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  font-weight: 600;
+
+  color: #ffffff !important;
+}
+
+/* Links */
+
+.vel-footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.vel-footer-links a {
+  display: inline-block;
+
+  font-size: 15px;
+  font-weight: 400;
+
+  color: #c9c5bf !important;
+
+  transition: all 0.25s ease;
+}
+
+.vel-footer-links a:hover {
+  color: #ffffff !important;
+  transform: translateX(4px);
+}
+
+/* Contact */
+
+.vel-footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.vel-footer-contact p,
+.vel-footer-contact a {
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 400;
+
+  color: #c9c5bf !important;
+}
+
+.vel-footer-contact a {
+  word-break: break-word;
+}
+
+.vel-footer-contact a:hover {
+  color: #ffffff !important;
+}
+
+/* Bottom */
+
+.vel-footer-bottom {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+
+  padding: 22px 0;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.vel-footer-bottom p {
+  margin: 0;
+
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+
+  color: #aaa69f !important;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 950px) {
+  .vel-footer-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 45px;
+    padding: 55px 0 45px;
+  }
+
+  .vel-footer-brand {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+  footer.vel-footer {
+    margin-top: 55px;
+  }
+
+  .vel-footer-inner {
+    width: 90%;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 45px 0 38px;
+  }
+
+  .vel-footer-logo {
+    font-size: 29px;
+    letter-spacing: 5px;
+  }
+
+  .vel-footer-description {
+    font-size: 14px;
+  }
+
+  .vel-footer-column h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .vel-footer-links a,
+  .vel-footer-contact p,
+  .vel-footer-contact a {
+    font-size: 14px;
+  }
+
+  .vel-footer-bottom {
+    width: 90%;
+    padding: 20px 0;
+  }
+
+  .vel-footer-bottom p {
+    font-size: 13px;
+  }
+}
+
