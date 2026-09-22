@@ -4,6 +4,7 @@ import { register, login, googleCallback, getMe, logout, updateProfile } from ".
 import { authenticateUser } from "../middlewares/auth.middlewares.js";
 import passport from "passport";
 import multer from "multer";
+import { config } from "../config/config.js";
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -56,11 +57,11 @@ router.get('/google', (req, res, next) => {
 //@route GET /api/auth/google/callback
 router.get('/google/callback', (req, res, next) => {
     if (!passport._strategy('google')) {
-        return res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=google_not_configured`);
+        return res.redirect(`${config.FRONTEND_URL}/login?error=google_not_configured`);
     }
     passport.authenticate('google', {
         session: false,
-        failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=google_login_failed`,
+        failureRedirect: `${config.FRONTEND_URL}/login?error=google_login_failed`,
     })(req, res, () => googleCallback(req, res, next));
 })
 

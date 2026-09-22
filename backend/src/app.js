@@ -26,23 +26,38 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 
+// Origin normalization helper (trims trailing slashes)
+const normalizeOrigin = (url) => (url ? url.trim().replace(/\/+$/, "") : "");
+
 // CORS configuration
 const allowedOrigins = [
-  config.FRONTEND_URL,
+  normalizeOrigin(config.FRONTEND_URL),
   "http://localhost:5173",
   "http://127.0.0.1:5173",
-  "https://velmorafinal-3.onrender.com/"
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "https://velmorafinal-3.onrender.com",
+  ...(process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(",").map(normalizeOrigin)
+    : []),
 ].filter(Boolean);
+
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true; // Allow requests without origin (server-to-server, curl, Postman)
+  const normalized = normalizeOrigin(origin);
+  if (allowedOrigins.includes(normalized)) return true;
+  // Allow any onrender.com subdomain for this project
+  if (/^https:\/\/.*\.onrender\.com$/.test(normalized)) return true;
+  return false;
+};
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests without an Origin, such as Postman and server requests
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (isAllowedOrigin(origin)) {
         return callback(null, true);
       }
-
-      return callback(new Error("Not allowed by CORS"));
+      return callback(null, false);
     },
     credentials: true,
   })
@@ -88,6 +103,19 @@ app.use("/api/auth", authRouter);
 app.use("/api/products", productRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/feedback", feedbackRouter);
+
+// Serve index.html for client-side routing (SPA fallback) on non-API GET requests
+app.use((req, res, next) => {
+  if (req.method === "GET" && !req.path.startsWith("/api")) {
+    const indexPath = path.join(__dirname, "../public/index.html");
+    return res.sendFile(indexPath, (err) => {
+      if (err) {
+        next();
+      }
+    });
+  }
+  next();
+});
 
 // Handle unknown routes
 app.use((req, res) => {
