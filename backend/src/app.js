@@ -29,7 +29,9 @@ app.use(express.urlencoded({ extended: true }));
 // CORS configuration
 const allowedOrigins = [
   config.FRONTEND_URL,
-  https://velmorafinal-3.onrender.com/
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "https://velmorafinal-3.onrender.com/"
 ].filter(Boolean);
 
 app.use(
