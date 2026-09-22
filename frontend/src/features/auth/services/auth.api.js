@@ -1,16 +1,14 @@
 import axios from 'axios';
 
-// In production, set VITE_API_BASE_URL in your hosting provider's env vars
-// (e.g. https://api.yourdomain.com/api). If unset, falls back to localhost
-// during local dev, or a same-origin relative path in production.
+// In production or when frontend and backend share an origin, use /api.
+// If hosted on a separate domain, set VITE_API_BASE_URL (e.g. https://velmorafinal-3.onrender.com/api).
 const baseURL =
-    import.meta.env.VITE_API_BASE_URL ||
-    (import.meta.env.DEV ? 'https://velmorafinal-3.onrender.com/api' : '/api');
+    import.meta.env.VITE_API_BASE_URL || '/api';
 
 export const api = axios.create({
     baseURL,
     withCredentials: true,
-})
+});
 
 export async function register({email, fullName, password}){
     const response = await api.post('/auth/register', {email, fullName, password});
@@ -38,7 +36,8 @@ export async function logout(){
 }
 
 export function getGoogleLoginUrl() {
-    return `${baseURL}/auth/google`;
+    const apiBase = (baseURL || '/api').replace(/\/+$/, '');
+    return `${apiBase}/auth/google`;
 }
 
 export function getApiError(error, fallback = 'Something went wrong. Please try again.') {

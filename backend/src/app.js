@@ -74,17 +74,12 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // Configure Google OAuth strategy
 if (config.GOOGLE_CLIENT_ID && config.GOOGLE_CLIENT_SECRET) {
-  const googleCallbackURL =
-    config.GOOGLE_CALLBACK_URL ||
-    process.env.GOOGLE_CALLBACK_URL ||
-    "https://velmorafinal-3.onrender.com/api/auth/google/callback";
-
   passport.use(
     new GoogleStrategy(
       {
         clientID: config.GOOGLE_CLIENT_ID,
         clientSecret: config.GOOGLE_CLIENT_SECRET,
-        callbackURL: googleCallbackURL,
+        callbackURL: config.GOOGLE_CALLBACK_URL || process.env.GOOGLE_CALLBACK_URL,
         proxy: true,
       },
       (accessToken, refreshToken, profile, done) => {

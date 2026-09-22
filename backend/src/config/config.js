@@ -11,12 +11,16 @@ if (!process.env.JWT_SECRET) {
 
 const frontendUrl = (process.env.FRONTEND_URL || "http://localhost:5173").trim().replace(/\/+$/, "");
 
-// Auto-derive production callback URL if running on Render or FRONTEND_URL is configured for production
-const defaultGoogleCallbackUrl = process.env.RENDER_EXTERNAL_URL
-    ? `${process.env.RENDER_EXTERNAL_URL.trim().replace(/\/+$/, "")}/api/auth/google/callback`
-    : (frontendUrl && !frontendUrl.includes("localhost")
-        ? `${frontendUrl}/api/auth/google/callback`
-        : "https://velmorafinal-3.onrender.com/api/auth/google/callback");
+// Production uses process.env.GOOGLE_CALLBACK_URL (e.g. https://velmorafinal-3.onrender.com/api/auth/google/callback).
+// Localhost is preserved strictly as a development fallback when not in production.
+const isProduction = process.env.NODE_ENV === "production" || (frontendUrl && !frontendUrl.includes("localhost"));
+const defaultGoogleCallbackUrl = isProduction
+    ? (process.env.RENDER_EXTERNAL_URL
+        ? `${process.env.RENDER_EXTERNAL_URL.trim().replace(/\/+$/, "")}/api/auth/google/callback`
+        : (frontendUrl && !frontendUrl.includes("localhost")
+            ? `${frontendUrl}/api/auth/google/callback`
+            : "https://velmorafinal-3.onrender.com/api/auth/google/callback"))
+    : "http://localhost:3000/api/auth/google/callback";
 
 export const config = {
     MONGO_URI: process.env.MONGO_URI,
@@ -30,4 +34,4 @@ export const config = {
     FRONTEND_URL: frontendUrl,
     GOOGLE_CALLBACK_URL: (process.env.GOOGLE_CALLBACK_URL || defaultGoogleCallbackUrl).trim().replace(/\/+$/, ""),
     NODE_ENV: process.env.NODE_ENV || "development"
-}
+};

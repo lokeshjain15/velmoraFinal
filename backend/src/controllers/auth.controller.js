@@ -14,8 +14,8 @@ async function sendTokenResponse(user, res, message) {
 
     res.cookie("token", token, {
         httpOnly: true,
-        sameSite: config.NODE_ENV === "production" ? "none" : "lax",
-        secure: config.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         maxAge: 7 * 24 * 60 * 60 * 1000,
     })
 
@@ -121,8 +121,8 @@ export const googleCallback = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            sameSite: config.NODE_ENV === "production" ? "none" : "lax",
-            secure: config.NODE_ENV === "production",
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
@@ -156,8 +156,8 @@ export const getMe = async (req, res) =>{
 export const logout = async (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
-        sameSite: config.NODE_ENV === "production" ? "none" : "lax",
-        secure: config.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
     return res.status(200).json({ message: "Logged out successfully", success: true });
 }
