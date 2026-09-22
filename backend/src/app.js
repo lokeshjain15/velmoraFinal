@@ -41,6 +41,8 @@ app.use(
 // Initialize Passport.js
 app.use(passport.initialize());
 
+app.use(express.static(Path.join(__dirname, '../public')));
+
 // Configure Google OAuth strategy
 if (config.GOOGLE_CLIENT_ID && config.GOOGLE_CLIENT_SECRET) {
   const googleCallbackURL =
