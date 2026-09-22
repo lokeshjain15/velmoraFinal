@@ -77,7 +77,7 @@ if (config.GOOGLE_CLIENT_ID && config.GOOGLE_CLIENT_SECRET) {
   const googleCallbackURL =
     config.GOOGLE_CALLBACK_URL ||
     process.env.GOOGLE_CALLBACK_URL ||
-    "http://localhost:3000/api/auth/google/callback";
+    "https://velmorafinal-3.onrender.com/api/auth/google/callback";
 
   passport.use(
     new GoogleStrategy(
