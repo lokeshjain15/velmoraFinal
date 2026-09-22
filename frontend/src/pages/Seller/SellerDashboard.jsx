@@ -171,7 +171,7 @@ export default function SellerDashboard() {
             />
           </div>
           <SellerField
-            label="Price (INR)"
+            label="Price (USD)"
             name="amount"
             type="number"
             min="1"
