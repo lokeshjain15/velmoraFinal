@@ -5,7 +5,7 @@ import axios from 'axios';
 // during local dev, or a same-origin relative path in production.
 const baseURL =
     import.meta.env.VITE_API_BASE_URL ||
-    (import.meta.env.DEV ? 'http://localhost:3000/api' : '/api');
+    (import.meta.env.DEV ? 'https://velmorafinal-3.onrender.com/api' : '/api');
 
 export const api = axios.create({
     baseURL,
